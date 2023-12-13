@@ -64,7 +64,7 @@ Future<void> printReports({
       pageFormat: PdfPageFormat.a4,
       footer: (context) {
         return Container(
-          height: 150,
+          height: 170,
           width: double.infinity,
           child: Image(footer, fit: BoxFit.fill),
         );
@@ -72,7 +72,7 @@ Future<void> printReports({
       build: (Context context) {
         return [
           Container(
-            height: 150,
+            height: 170,
             width: double.infinity,
             child: Image(header, fit: BoxFit.fill),
           ),
@@ -83,23 +83,15 @@ Future<void> printReports({
                 children: [
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          agentName,
+                          'Agent Name',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -108,23 +100,15 @@ Future<void> printReports({
                   SizedBox(height: 10),
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          today,
+                          'Date',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -133,23 +117,15 @@ Future<void> printReports({
                   SizedBox(height: 10),
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          'prepared by : $emp',
+                          'prepared by',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -157,12 +133,70 @@ Future<void> printReports({
                   ),
                 ],
               ),
+              SizedBox(width: 10),
+              Container(
+                color: secondColor,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            agentName,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            today,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            emp,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Spacer(),
               Column(
                 children: [
                   Container(
                     height: 40,
-                    width: 200,
+                    width: 150,
                     decoration: BoxDecoration(
                       color: mainColor,
                       border: Border.symmetric(
@@ -178,7 +212,7 @@ Future<void> printReports({
                         child: Text(
                           'Reporting period',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -187,7 +221,7 @@ Future<void> printReports({
                   SizedBox(height: 10),
                   Container(
                     height: 90,
-                    width: 200,
+                    width: 150,
                     decoration: BoxDecoration(
                       color: secondColor,
                     ),
@@ -197,7 +231,7 @@ Future<void> printReports({
                         child: Text(
                           '$end  :  $start',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -227,13 +261,13 @@ Future<void> printReports({
           ),
           SizedBox(height: 10),
           //the TableHelper
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              fPost != '0' && fStory != '0' && fRells != '0' && fVideo != '0'
-                  ? Container(
+              fPost == '0' && fStory == '0' && fRells == '0' && fVideo == '0'
+                  ? SizedBox()
+                  : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: Directionality(
                         textDirection: TextDirection.rtl,
@@ -245,6 +279,10 @@ Future<void> printReports({
                           cellDecoration: (index, data, rowNum) {
                             return BoxDecoration(color: secondColor);
                           },
+                          cellPadding: const EdgeInsets.symmetric(
+                            horizontal: 9,
+                            vertical: 6,
+                          ),
                           headerAlignment: Alignment.center,
                           headers: <dynamic>[
                             AppStrings.facebook,
@@ -261,14 +299,14 @@ Future<void> printReports({
                           ],
                         ),
                       ),
-                    )
-                  : SizedBox(),
-              insPost != '0' &&
-                      insStory != '0' &&
-                      insRells != '0' &&
-                      insVideo != '0' &&
-                      insHeiglights != '0'
-                  ? Container(
+                    ),
+              insPost == '0' &&
+                      insStory == '0' &&
+                      insRells == '0' &&
+                      insVideo == '0' &&
+                      insHeiglights == '0'
+                  ? SizedBox()
+                  : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: Directionality(
                         textDirection: TextDirection.rtl,
@@ -277,6 +315,10 @@ Future<void> printReports({
                             fontSize: 14,
                           ),
                           headerDecoration: BoxDecoration(color: mainColor),
+                          cellPadding: const EdgeInsets.symmetric(
+                            horizontal: 9,
+                            vertical: 6,
+                          ),
                           cellDecoration: (index, data, rowNum) {
                             return BoxDecoration(color: secondColor);
                           },
@@ -303,10 +345,10 @@ Future<void> printReports({
                           ],
                         ),
                       ),
-                    )
-                  : SizedBox(),
-              dPost != '0' && dFreame != '0' && dCover != '0'
-                  ? Container(
+                    ),
+              dPost == '0' && dFreame == '0' && dCover == '0'
+                  ? SizedBox()
+                  : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: Directionality(
                         textDirection: TextDirection.rtl,
@@ -318,6 +360,10 @@ Future<void> printReports({
                           cellDecoration: (index, data, rowNum) {
                             return BoxDecoration(color: secondColor);
                           },
+                          cellPadding: const EdgeInsets.symmetric(
+                            horizontal: 9,
+                            vertical: 6,
+                          ),
                           headerAlignment: Alignment.center,
                           headers: <dynamic>[
                             AppStrings.design,
@@ -333,10 +379,10 @@ Future<void> printReports({
                           ],
                         ),
                       ),
-                    )
-                  : SizedBox(),
-              wBlog != '0' && wPhotos != '0' && wVideo != '0'
-                  ? Container(
+                    ),
+              wBlog == '0' && wPhotos == '0' && wVideo == '0'
+                  ? SizedBox()
+                  : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: Directionality(
                         textDirection: TextDirection.rtl,
@@ -348,6 +394,10 @@ Future<void> printReports({
                           cellDecoration: (index, data, rowNum) {
                             return BoxDecoration(color: secondColor);
                           },
+                          cellPadding: const EdgeInsets.symmetric(
+                            horizontal: 9,
+                            vertical: 6,
+                          ),
                           headerAlignment: Alignment.center,
                           headers: <dynamic>[
                             AppStrings.website,
@@ -363,10 +413,10 @@ Future<void> printReports({
                           ],
                         ),
                       ),
-                    )
-                  : SizedBox(),
-              yVideo != '0' && yShorts != '0'
-                  ? Container(
+                    ),
+              yVideo == '0' && yShorts == '0'
+                  ? SizedBox()
+                  : Container(
                       margin: const EdgeInsets.symmetric(horizontal: 4),
                       child: Directionality(
                         textDirection: TextDirection.rtl,
@@ -378,6 +428,10 @@ Future<void> printReports({
                           cellDecoration: (index, data, rowNum) {
                             return BoxDecoration(color: secondColor);
                           },
+                          cellPadding: const EdgeInsets.symmetric(
+                            horizontal: 9,
+                            vertical: 6,
+                          ),
                           headerAlignment: Alignment.center,
                           headers: <dynamic>[
                             AppStrings.youtube,
@@ -392,8 +446,7 @@ Future<void> printReports({
                           ],
                         ),
                       ),
-                    )
-                  : SizedBox(),
+                    ),
             ],
           ),
           SizedBox(height: 10),

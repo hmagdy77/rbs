@@ -171,7 +171,7 @@ class AgentSafeDetailsScreen extends StatelessWidget {
       opreationsController.printItems.add(
         [
           opreations[i].price,
-          DateFormat.yMMMMEEEEd().format(opreations[i].time),
+          DateFormat.yMd().format(opreations[i].time),
           opreations[i].serviceDesc,
           opreations[i].serviceName
         ],

@@ -45,7 +45,7 @@ Future<void> printCampagins({
       pageFormat: PdfPageFormat.a4,
       footer: (context) {
         return Container(
-          height: 150,
+          height: 170,
           width: double.infinity,
           child: Image(footer, fit: BoxFit.fill),
         );
@@ -53,7 +53,7 @@ Future<void> printCampagins({
       build: (Context context) {
         return [
           Container(
-            height: 150,
+            height: 170,
             width: double.infinity,
             child: Image(header, fit: BoxFit.fill),
           ),
@@ -64,23 +64,15 @@ Future<void> printCampagins({
                 children: [
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          camName,
+                          'Campaign name',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -89,23 +81,15 @@ Future<void> printCampagins({
                   SizedBox(height: 10),
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          today,
+                          'Date',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -114,23 +98,15 @@ Future<void> printCampagins({
                   SizedBox(height: 10),
                   Container(
                     height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      border: Border.symmetric(
-                        horizontal: BorderSide(
-                          width: 1,
-                          color: mainColor,
-                        ),
-                      ),
-                    ),
+                    width: 150,
+                    decoration: BoxDecoration(color: mainColor),
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Center(
                         child: Text(
-                          'prepared by : $emp',
+                          'prepared by',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -138,12 +114,70 @@ Future<void> printCampagins({
                   ),
                 ],
               ),
+              SizedBox(width: 10),
+              Container(
+                color: secondColor,
+                child: Column(
+                  children: [
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            camName,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            today,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 40,
+                      width: 150,
+                      // decoration: BoxDecoration(color: secondColor),
+                      child: Directionality(
+                        textDirection: TextDirection.ltr,
+                        child: Center(
+                          child: Text(
+                            emp,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Spacer(),
               Column(
                 children: [
                   Container(
                     height: 40,
-                    width: 200,
+                    width: 150,
                     decoration: BoxDecoration(
                       color: mainColor,
                       border: Border.symmetric(
@@ -159,7 +193,7 @@ Future<void> printCampagins({
                         child: Text(
                           'Reporting period',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -168,7 +202,7 @@ Future<void> printCampagins({
                   SizedBox(height: 10),
                   Container(
                     height: 90,
-                    width: 200,
+                    width: 150,
                     decoration: BoxDecoration(
                       color: secondColor,
                     ),
@@ -178,7 +212,7 @@ Future<void> printCampagins({
                         child: Text(
                           '$end  :  $start',
                           style: const TextStyle(
-                            fontSize: 16,
+                            fontSize: 12,
                           ),
                         ),
                       ),
@@ -208,7 +242,44 @@ Future<void> printCampagins({
           ),
           SizedBox(height: 10),
           //the TableHelper
-
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            child: Directionality(
+              textDirection: TextDirection.rtl,
+              child: TableHelper.fromTextArray(
+                headerStyle: const TextStyle(
+                  fontSize: 10,
+                ),
+                headerDecoration: BoxDecoration(color: mainColor),
+                cellDecoration: (index, data, rowNum) {
+                  return BoxDecoration(color: secondColor);
+                },
+                cellPadding: const EdgeInsets.symmetric(
+                  horizontal: 9,
+                  vertical: 6,
+                ),
+                headerAlignment: Alignment.center,
+                headers: <dynamic>[
+                  AppStrings.reach,
+                  AppStrings.likes,
+                  AppStrings.comments,
+                  AppStrings.messages,
+                ],
+                cellAlignment: Alignment.center,
+                cellStyle: const TextStyle(
+                  fontSize: 10,
+                ),
+                data: [
+                  [
+                    reach,
+                    likes,
+                    comments,
+                    messages,
+                  ],
+                ],
+              ),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 4),
             child: Directionality(
@@ -237,41 +308,6 @@ Future<void> printCampagins({
               ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 4),
-            child: Directionality(
-              textDirection: TextDirection.rtl,
-              child: TableHelper.fromTextArray(
-                headerStyle: const TextStyle(
-                  fontSize: 10,
-                ),
-                headerDecoration: BoxDecoration(color: mainColor),
-                cellDecoration: (index, data, rowNum) {
-                  return BoxDecoration(color: secondColor);
-                },
-                headerAlignment: Alignment.center,
-                headers: <dynamic>[
-                  AppStrings.reach,
-                  AppStrings.likes,
-                  AppStrings.comments,
-                  AppStrings.messages,
-                ],
-                cellAlignment: Alignment.center,
-                cellStyle: const TextStyle(
-                  fontSize: 10,
-                ),
-                data: [
-                  [
-                    reach,
-                    likes,
-                    comments,
-                    messages,
-                  ],
-                ],
-              ),
-            ),
-          ),
-
           SizedBox(height: 10),
         ];
       },

@@ -32,23 +32,23 @@ class ReportsControllerImp extends ReportsController {
   TextEditingController dsFrame = TextEditingController();
   TextEditingController dsCover = TextEditingController();
   TextEditingController dsPosts = TextEditingController();
-  int fbPostsSum = 0;
-  int fbRellsSum = 0;
-  int fbStorysSum = 0;
-  int fbVideosSum = 0;
-  int insPostsSum = 0;
-  int insRellsSum = 0;
-  int insStorysSum = 0;
-  int insVideosSum = 0;
-  int insHighlightSum = 0;
-  int wbBlogSum = 0;
-  int wbphotosSum = 0;
-  int wbVideosSum = 0;
-  int ytShortsSum = 0;
-  int ytVideosSum = 0;
-  int dsFrameSum = 0;
-  int dsCoverSum = 0;
-  int dsPostsSum = 0;
+  var fbPostsSum = 0.obs;
+  var fbRellsSum = 0.obs;
+  var fbStorysSum = 0.obs;
+  var fbVideosSum = 0.obs;
+  var insPostsSum = 0.obs;
+  var insRellsSum = 0.obs;
+  var insStorysSum = 0.obs;
+  var insVideosSum = 0.obs;
+  var insHighlightSum = 0.obs;
+  var wbBlogSum = 0.obs;
+  var wbphotosSum = 0.obs;
+  var wbVideosSum = 0.obs;
+  var ytShortsSum = 0.obs;
+  var ytVideosSum = 0.obs;
+  var dsFrameSum = 0.obs;
+  var dsCoverSum = 0.obs;
+  var dsPostsSum = 0.obs;
 
   void showDialog({required Widget child, context}) {
     showCupertinoModalPopup<void>(
@@ -191,7 +191,7 @@ class ReportsControllerImp extends ReportsController {
   }
 
   getReports({
-    required int agentId,
+    required var agentId,
   }) async {
     isLoading(true);
     update();
@@ -226,7 +226,7 @@ class ReportsControllerImp extends ReportsController {
   }
 
   getReportsfromRange({
-    required int agentId,
+    required var agentId,
   }) async {
     isLoading(true);
     update();
@@ -252,12 +252,12 @@ class ReportsControllerImp extends ReportsController {
     }
   }
 
-  sortReports({required int agentId}) async {
+  sortReports({required var agentId}) async {
     agentReports.clear();
     agentReports = allReports
         .where(
           (report) {
-            int id = int.parse(report.agentId);
+            var id = int.parse(report.agentId);
             return id == agentId;
           },
         )
@@ -388,69 +388,69 @@ class ReportsControllerImp extends ReportsController {
 
   sum({required List<Report> reportsList}) {
     // ins
-    fbPostsSum = 0;
-    fbRellsSum = 0;
-    fbStorysSum = 0;
-    fbVideosSum = 0;
+    fbPostsSum = 0.obs;
+    fbRellsSum = 0.obs;
+    fbStorysSum = 0.obs;
+    fbVideosSum = 0.obs;
     // ins
-    insPostsSum = 0;
-    insRellsSum = 0;
-    insStorysSum = 0;
-    insVideosSum = 0;
-    insHighlightSum = 0;
+    insPostsSum = 0.obs;
+    insRellsSum = 0.obs;
+    insStorysSum = 0.obs;
+    insVideosSum = 0.obs;
+    insHighlightSum = 0.obs;
     // ds
-    dsPostsSum = 0;
-    dsCoverSum = 0;
-    dsFrameSum = 0;
+    dsPostsSum = 0.obs;
+    dsCoverSum = 0.obs;
+    dsFrameSum = 0.obs;
     // wb
-    wbBlogSum = 0;
-    wbVideosSum = 0;
-    wbphotosSum = 0;
+    wbBlogSum = 0.obs;
+    wbVideosSum = 0.obs;
+    wbphotosSum = 0.obs;
     // yt
-    ytShortsSum = 0;
-    ytVideosSum = 0;
+    ytShortsSum = 0.obs;
+    ytVideosSum = 0.obs;
     for (int i = 0; i < reportsList.length; i++) {
-      fbPostsSum += int.parse(reportsList[i].fbPosts);
-      fbRellsSum += int.parse(reportsList[i].fbRells);
-      fbStorysSum += int.parse(reportsList[i].fbStorys);
-      fbVideosSum += int.parse(reportsList[i].fbVideos);
+      fbPostsSum.value += int.parse(reportsList[i].fbPosts);
+      fbRellsSum.value += int.parse(reportsList[i].fbRells);
+      fbStorysSum.value += int.parse(reportsList[i].fbStorys);
+      fbVideosSum.value += int.parse(reportsList[i].fbVideos);
       // ins
-      insPostsSum += int.parse(reportsList[i].insPosts);
-      insRellsSum += int.parse(reportsList[i].insRells);
-      insStorysSum += int.parse(reportsList[i].insStorys);
-      insVideosSum += int.parse(reportsList[i].insVideos);
-      insHighlightSum += int.parse(reportsList[i].insHighlight);
+      insPostsSum.value += int.parse(reportsList[i].insPosts);
+      insRellsSum.value += int.parse(reportsList[i].insRells);
+      insStorysSum.value += int.parse(reportsList[i].insStorys);
+      insVideosSum.value += int.parse(reportsList[i].insVideos);
+      insHighlightSum.value += int.parse(reportsList[i].insHighlight);
       // ds
-      dsCoverSum += int.parse(reportsList[i].dsCover);
-      dsFrameSum += int.parse(reportsList[i].dsFrame);
-      dsPostsSum += int.parse(reportsList[i].dsPosts);
+      dsCoverSum.value += int.parse(reportsList[i].dsCover);
+      dsFrameSum.value += int.parse(reportsList[i].dsFrame);
+      dsPostsSum.value += int.parse(reportsList[i].dsPosts);
       // wb
-      wbBlogSum += int.parse(reportsList[i].wbBlog);
-      wbVideosSum += int.parse(reportsList[i].wbVideos);
-      wbphotosSum += int.parse(reportsList[i].wbPhotos);
+      wbBlogSum.value += int.parse(reportsList[i].wbBlog);
+      wbVideosSum.value += int.parse(reportsList[i].wbVideos);
+      wbphotosSum.value += int.parse(reportsList[i].wbPhotos);
       // yt
-      ytShortsSum += int.parse(reportsList[i].ytShorts);
-      ytVideosSum += int.parse(reportsList[i].ytVideos);
+      ytShortsSum.value += int.parse(reportsList[i].ytShorts);
+      ytVideosSum.value += int.parse(reportsList[i].ytVideos);
     }
   }
 
   clearSum() {
-    fbPostsSum = 0;
-    fbRellsSum = 0;
-    fbStorysSum = 0;
-    fbVideosSum = 0;
-    insPostsSum = 0;
-    insRellsSum = 0;
-    insStorysSum = 0;
-    insVideosSum = 0;
-    insHighlightSum = 0;
-    wbBlogSum = 0;
-    wbphotosSum = 0;
-    wbVideosSum = 0;
-    ytShortsSum = 0;
-    ytVideosSum = 0;
-    dsFrameSum = 0;
-    dsCoverSum = 0;
-    dsPostsSum = 0;
+    fbPostsSum = 0.obs;
+    fbRellsSum = 0.obs;
+    fbStorysSum = 0.obs;
+    fbVideosSum = 0.obs;
+    insPostsSum = 0.obs;
+    insRellsSum = 0.obs;
+    insStorysSum = 0.obs;
+    insVideosSum = 0.obs;
+    insHighlightSum = 0.obs;
+    wbBlogSum = 0.obs;
+    wbphotosSum = 0.obs;
+    wbVideosSum = 0.obs;
+    ytShortsSum = 0.obs;
+    ytVideosSum = 0.obs;
+    dsFrameSum = 0.obs;
+    dsCoverSum = 0.obs;
+    dsPostsSum = 0.obs;
   }
 }
