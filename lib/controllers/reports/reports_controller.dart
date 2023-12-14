@@ -174,7 +174,17 @@ class ReportsControllerImp extends ReportsController {
       );
       if (addReportRepo.status == 'suc') {
         MySnackBar.snack(AppStrings.done, 'message');
-        // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
+        if (((double.parse(agent.reportsDone) / double.parse(agent.reports)) *
+                100) !=
+            100) {
+          await UsersRepo.notification(
+            title: agent.name,
+            content:
+                'تقرير غير مكتمل بنسبة ${((double.parse(agent.reportsDone) / double.parse(agent.reports)) * 100).toStringAsFixed(1)} %',
+            image: '${Api.agentsViewImage}/${agent.image}',
+          );
+        }
+
         clearTextFields();
         isLoading(false);
         update();

@@ -71,6 +71,7 @@ class CampaginViewScreen extends StatelessWidget {
                               : campagin.active == '0'
                                   ? '1'
                                   : '1',
+                          campagin: campagin,
                         );
                       },
                     );

@@ -40,11 +40,6 @@ class CampaginsControllerImp extends CampaginsController {
     );
   }
 
-  // changeState() {
-  //   isLoading(false);
-  //  update();
-  // }
-
   addCampagin({required String agentName, required context}) async {
     isLoading(true);
     update();
@@ -57,10 +52,13 @@ class CampaginsControllerImp extends CampaginsController {
         startDate: startDate.value,
         endDate: endDate.value,
       );
-
       if (addCampaginRepo.status == 'suc') {
         MySnackBar.snack(AppStrings.done, 'message');
-        // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
+        await UsersRepo.notification(
+          title: agentName,
+          content: 'تم اضافة حملة باسم ${name.text}',
+          image: '',
+        );
         await getCampagins();
         isLoading(false);
         update();
@@ -157,7 +155,6 @@ class CampaginsControllerImp extends CampaginsController {
       );
       if (editCampaginRepo.status == 'suc') {
         MySnackBar.snack(AppStrings.done, 'message');
-        // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
         await getCampagins();
         isLoading(false);
         update();
@@ -203,7 +200,11 @@ class CampaginsControllerImp extends CampaginsController {
     );
   }
 
-  activeCampagin({required String id, required String active}) async {
+  activeCampagin({
+    required String id,
+    required String active,
+    required Campagin campagin,
+  }) async {
     {
       try {
         var actAgentRepo = await CampaginsRepo.activeCampagin(
@@ -212,6 +213,11 @@ class CampaginsControllerImp extends CampaginsController {
         );
         if (actAgentRepo.status == 'suc') {
           MySnackBar.snack(AppStrings.done, 'message');
+          await UsersRepo.notification(
+            title: campagin.name,
+            content: active == '0' ? 'تم ايقاف الحملة' : 'تم تفعيل الحملة',
+            image: '',
+          );
           await getCampagins();
           isLoading(false);
           update();

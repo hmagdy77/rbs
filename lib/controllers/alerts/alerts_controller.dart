@@ -58,8 +58,13 @@ class AlertsControllerImp extends AlertsController {
         kind: kind,
       );
       if (addAlertRepo.status == 'suc') {
+        await getAlerts();
         MySnackBar.snack(AppStrings.done, 'message');
-        // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
+        await UsersRepo.notification(
+          title: creater,
+          content: content.text,
+          image: '',
+        );
         isLoading(false);
         update();
       } else {
@@ -142,7 +147,8 @@ class AlertsControllerImp extends AlertsController {
           var deleteAlert = await AlertsRepo.deleteAlerts(id: id);
           if (deleteAlert.status == 'suc') {
             MySnackBar.snack(AppStrings.done, 'message');
-            // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
+            await getAlerts();
+
             isLoading(false);
             update();
           } else {
@@ -171,8 +177,13 @@ class AlertsControllerImp extends AlertsController {
         seenAt: DateTime.now().toString(),
       );
       if (seen.status == 'suc') {
+        await getAlerts();
         MySnackBar.snack(AppStrings.done, 'message');
-        // Navigator.pushReplacementNamed(context, AppRoutes.mainRoot);
+        await UsersRepo.notification(
+          title: reciver,
+          content: 'تم استلام التتبيه',
+          image: '',
+        );
         isLoading(false);
         update();
       } else {

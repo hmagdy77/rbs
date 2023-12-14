@@ -44,6 +44,7 @@ class Api {
   static const String usersEdit = '$baseUrl/users/edit.php';
   static const String usersDelete = '$baseUrl/users/delete.php';
   static const String usersLogin = '$baseUrl/users/login.php';
+  static const String notification = '$baseUrl/users/not.php';
 //***************************attend**************************
   static const String attendExit = '$baseUrl/attend/exit.php';
   static const String attendAttend = '$baseUrl/attend/attend.php';

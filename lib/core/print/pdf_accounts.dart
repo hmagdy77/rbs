@@ -252,6 +252,7 @@ Future<void> printAccounts({
                 },
                 headerAlignment: Alignment.center,
                 headers: <dynamic>[
+                  AppStrings.kind,
                   AppStrings.price,
                   AppStrings.date,
                   AppStrings.desc,

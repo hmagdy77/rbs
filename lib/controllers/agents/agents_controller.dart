@@ -442,6 +442,11 @@ class AgentsControllerImp extends AgentsController {
           id: agent.id,
           account: agent.renewalValue,
         );
+        await UsersRepo.notification(
+          title: agent.name,
+          content: AppStrings.monthleRewnable,
+          image: '${Api.agentsViewImage}/${agent.image}',
+        );
       }
     } catch (_) {}
   }

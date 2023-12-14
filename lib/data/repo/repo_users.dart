@@ -9,6 +9,19 @@ class UsersRepo {
     );
   }
 
+  static notification(
+      {required String title, required String content, required String image}) {
+    return Crud.postRequest(
+      url: Api.notification,
+      data: {
+        'title': title,
+        'content': content,
+        'image': image,
+      },
+      function: statusModelFromJson,
+    );
+  }
+
   static addUser({
     required String userName,
     required String password,

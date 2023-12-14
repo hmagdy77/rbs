@@ -170,6 +170,7 @@ class AgentSafeDetailsScreen extends StatelessWidget {
     for (int i = 0; i < opreations.length; i++) {
       opreationsController.printItems.add(
         [
+          opreations[i].kind == '1' ? AppStrings.cash : AppStrings.service,
           opreations[i].price,
           DateFormat.yMd().format(opreations[i].time),
           opreations[i].serviceDesc,

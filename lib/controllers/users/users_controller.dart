@@ -62,6 +62,12 @@ class UsersControllerImp extends UsersController {
             day: formatter.format(DateTime.now()),
             time: DateTime.now().toString(),
           );
+          await UsersRepo.notification(
+            title: userName,
+            content:
+                '${AppStrings.attendTime}  ${DateFormat.jm().format(DateTime.now())}',
+            image: '',
+          );
           showSnakString(context: context, label: AppStrings.done);
           Navigator.pushNamed(context, AppRoutes.homeScreen);
         }
@@ -88,6 +94,12 @@ class UsersControllerImp extends UsersController {
       );
       if (logOut.status == "suc") {
         MySnackBar.snack(AppStrings.done, 'message');
+        await UsersRepo.notification(
+          title: userName,
+          content:
+              '${AppStrings.exitTime} ${DateFormat.jm().format(DateTime.now())}',
+          image: '',
+        );
       } else {
         MySnackBar.snack(AppStrings.faild, 'message');
       }
