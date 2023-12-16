@@ -1,0 +1,28 @@
+<?php
+include '../connect.php';
+    $agent         =  insilterRequest('agent');           //1
+    $price         =  insilterRequest('price');           //2
+    $service_name  =  insilterRequest('service_name');    //3
+    $service_desc  =  insilterRequest('service_desc');    //4
+    $desc          =  insilterRequest('desc');            //5
+    $kind          =  insilterRequest('kind');            //6
+    $time          =  insilterRequest('time');            //7
+    $stmt = $con->prepare("SELECT * insROM `opreations` WHERE  `agent` = ? And `desc` = ?");
+    $stmt->execute(array($agent, $desc));
+    $cont = $stmt->rowCount();
+    iins($cont > 0){
+        echo json_encode(array('status' => 'insound'));
+    }else{
+        $stmt = $con->prepare("INSERT INTO `opreations`(`agent`, `price`, `service_name`, `service_desc`, `desc`, `kind`, `time`) VALUES (?,?,?,?,?,?,?)");
+        $stmt->execute(array($agent ,$price ,$service_name, $service_desc, $desc, $kind ,$time));
+        $cont = $stmt->rowCount();
+        iins($cont > 0){
+            echo json_encode(array('status' => 'suc'));
+        }else{
+            echo json_encode(array('status' => 'insail'));
+        }
+    }
+?>
+
+
+
